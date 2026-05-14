@@ -36,7 +36,43 @@ body {
   -webkit-font-smoothing: antialiased;
   display: flex;
   min-height: 100vh;
+  position: relative;
 }
+
+/* --- Subtle background pattern --- */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  background-image:
+    radial-gradient(circle at 20% 50%, rgba(59,130,246,0.04) 0%, transparent 50%),
+    radial-gradient(circle at 80% 20%, rgba(99,102,241,0.03) 0%, transparent 50%),
+    radial-gradient(circle at 50% 80%, rgba(59,130,246,0.03) 0%, transparent 50%);
+  pointer-events: none;
+}
+
+/* --- Article fade-in animation --- */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+main > article {
+  animation: fadeInUp 0.4s ease both;
+}
+
+main > article:nth-child(1) { animation-delay: 0.05s; }
+main > article:nth-child(2) { animation-delay: 0.1s; }
+main > article:nth-child(3) { animation-delay: 0.15s; }
+main > article:nth-child(4) { animation-delay: 0.2s; }
+main > article:nth-child(5) { animation-delay: 0.25s; }
 
 /* ============================================
    SIDEBAR — Swiss compact
@@ -61,6 +97,12 @@ aside img {
   height: 48px !important;
   border-radius: 0;
   margin-bottom: 1rem;
+  transition: transform 0.3s ease, opacity 0.3s ease;
+}
+
+aside img:hover {
+  transform: scale(1.08);
+  opacity: 0.85;
 }
 
 aside h1 {
@@ -157,10 +199,14 @@ main > article {
   border: 1px solid var(--border);
   padding: 1.5rem 1.75rem;
   margin-bottom: 1rem;
-  transition: border-color var(--transition);
+  transition: transform 0.25s ease, border-color var(--transition), box-shadow 0.25s ease;
 }
 
-main > article:hover { border-color: var(--accent); }
+main > article:hover {
+  border-color: var(--accent);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(0,0,0,0.06);
+}
 
 main > article header { margin-bottom: 0.5rem; }
 
@@ -560,6 +606,17 @@ main > ul li time {
     --text-muted: #64748b;
     --border: #334155;
     --border-light: #1e293b;
+  }
+
+  body::before {
+    background-image:
+      radial-gradient(circle at 20% 50%, rgba(96,165,250,0.06) 0%, transparent 50%),
+      radial-gradient(circle at 80% 20%, rgba(99,102,241,0.05) 0%, transparent 50%),
+      radial-gradient(circle at 50% 80%, rgba(96,165,250,0.04) 0%, transparent 50%);
+  }
+
+  main > article:hover {
+    box-shadow: 0 8px 25px rgba(0,0,0,0.3);
   }
 
   article.single > div table th {

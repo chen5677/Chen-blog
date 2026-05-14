@@ -186,5 +186,9 @@
   {% include 'partial/cf_analytics.html' %}
 
   {% block additional_js %}{% endblock %}
+
+  {% if CUSTOM_JS %}
+  <script src="{{ SITEURL }}/{{ CUSTOM_JS }}"></script>
+  {% endif %}
 </body>
 </html>
