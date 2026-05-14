@@ -51,6 +51,7 @@ EXTRA_PATH_METADATA = {
     "extra/favicon.ico": {"path": "favicon.ico"},
     "extra/nojekyll": {"path": ".nojekyll"},
     "extra/custom.css": {"path": "theme/css/custom.css"},
+    "extra/custom.js": {"path": "theme/js/custom.js"},
 }
 
 # Pages

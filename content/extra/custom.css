@@ -104,11 +104,11 @@ aside.collapsed .sidebar-inner {
   display: none;
 }
 
-/* Toggle button */
+/* Toggle button (outside aside, after it in DOM) */
 .sidebar-toggle {
   position: fixed;
   top: 2.5rem;
-  left: 240px;
+  left: 244px;
   width: 36px;
   height: 36px;
   display: flex;
@@ -116,7 +116,7 @@ aside.collapsed .sidebar-inner {
   justify-content: center;
   background: var(--bg-sidebar);
   border: 1px solid var(--border);
-  border-left: none;
+  border-radius: 0 4px 4px 0;
   cursor: pointer;
   color: var(--text-muted);
   transition: left 0.3s ease, color var(--transition), background var(--transition), border-color var(--transition);
@@ -124,8 +124,8 @@ aside.collapsed .sidebar-inner {
   padding: 0;
 }
 
-aside.collapsed .sidebar-toggle {
-  left: 0;
+aside.collapsed + .sidebar-toggle {
+  left: 4px;
 }
 
 .sidebar-toggle:hover {
