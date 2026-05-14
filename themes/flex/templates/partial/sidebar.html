@@ -1,20 +1,22 @@
 <aside>
   <div class="sidebar-inner">
-    <a href="{{ SITEURL }}/">
-      {% if SITELOGO %}
-      <img src="{{ SITEURL }}{{ SITELOGO }}" alt="{{ SITETITLE }}" title="{{ SITETITLE }}">
-      {% else %}
-      <img src="{{ SITEURL }}/{{ THEME_STATIC_DIR }}/img/profile.png" alt="{{ SITETITLE }}" title="{{ SITETITLE }}">
+    <div class="sidebar-profile">
+      <a href="{{ SITEURL }}/">
+        {% if SITELOGO %}
+        <img src="{{ SITEURL }}{{ SITELOGO }}" alt="{{ SITETITLE }}" title="{{ SITETITLE }}">
+        {% else %}
+        <img src="{{ SITEURL }}/{{ THEME_STATIC_DIR }}/img/profile.png" alt="{{ SITETITLE }}" title="{{ SITETITLE }}">
+        {% endif %}
+      </a>
+
+      <h1>
+        <a href="{{ SITEURL }}/">{{ SITETITLE }}</a>
+      </h1>
+
+      {% if SITESUBTITLE %}
+      <p class="sidebar-subtitle">{{ SITESUBTITLE }}</p>
       {% endif %}
-    </a>
-
-    <h1>
-      <a href="{{ SITEURL }}/">{{ SITETITLE }}</a>
-    </h1>
-
-    {% if SITESUBTITLE %}
-    <p>{{ SITESUBTITLE }}</p>
-    {% endif %}
+    </div>
 
     {% if PLUGINS %}
     {% if ('tipue_search' in PLUGINS or 'pelican.plugins.tipue_search' in PLUGINS) %}
@@ -30,7 +32,7 @@
     {% endif %}
 
     {% if (pages and DISPLAY_PAGES_ON_MENU) or LINKS %}
-    <nav>
+    <nav class="sidebar-nav">
       <ul class="list">
         {% macro get_target(link) -%}
           {%- if LINKS_IN_NEW_TAB in ('all', true) -%}
@@ -60,6 +62,18 @@
         {% for name, link in LINKS %}
           <li>
             <a target="{{ get_target(link) }}" href="{{ link }}" >{{ name }}</a>
+          </li>
+        {% endfor %}
+      </ul>
+    </nav>
+    {% endif %}
+
+    {% if MENUITEMS %}
+    <nav class="sidebar-nav sidebar-menu">
+      <ul class="list">
+        {% for name, link in MENUITEMS %}
+          <li>
+            <a href="{{ link }}">{{ name }}</a>
           </li>
         {% endfor %}
       </ul>
