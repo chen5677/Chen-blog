@@ -4,7 +4,7 @@ Modified: 2026-05-14 10:00
 Category: 随笔
 Tags: about
 Slug: about
-Authors: Your Name
+Authors: chen5677
 Summary: 关于这个博客和我自己
 
 # 关于我
@@ -21,5 +21,5 @@ Summary: 关于这个博客和我自己
 
 ## 联系方式
 
-- GitHub: [github.com/your-username](https://github.com/your-username)
-- Email: your-email@example.com
+- GitHub: [github.com/chen5677](https://github.com/chen5677)
+- Email: 530949954@qq.com
