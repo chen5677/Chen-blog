@@ -189,12 +189,14 @@
   function toggleSidebar() {
     const aside = document.querySelector('aside');
     aside.classList.toggle('collapsed');
+    document.body.classList.toggle('sidebar-collapsed', aside.classList.contains('collapsed'));
     localStorage.setItem('sidebar-collapsed', aside.classList.contains('collapsed') ? 'true' : 'false');
   }
   document.addEventListener('DOMContentLoaded', () => {
     // Default to collapsed when no preference saved
     if (localStorage.getItem('sidebar-collapsed') !== 'false') {
       document.querySelector('aside').classList.add('collapsed');
+      document.body.classList.add('sidebar-collapsed');
     }
   });
   </script>

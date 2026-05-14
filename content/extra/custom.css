@@ -40,9 +40,10 @@ body {
   -webkit-font-smoothing: antialiased;
   min-height: 100vh;
   position: relative;
-  /* Override Flex theme: remove height:100% and flex layout for fixed sidebar */
   display: block;
   height: auto;
+  padding-left: 260px;
+  transition: padding-left 0.35s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 /* --- Anime background image (semi-transparent) --- */
@@ -375,20 +376,15 @@ aside ul.social li a:hover {
 main {
   max-width: 740px;
   padding: 3rem;
-  margin-left: 260px;
-  margin-right: auto;
+  margin: 0 auto;
   min-height: 100vh;
   height: auto;
-  width: calc(100% - 260px);
   position: static;
-  transition: margin-left 0.35s cubic-bezier(0.4, 0, 0.2, 1),
-              width 0.35s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-/* When sidebar is collapsed, main takes full width */
-aside.collapsed ~ main {
-  margin-left: 0;
-  width: 100%;
+/* When sidebar is collapsed, body padding shrinks */
+body.sidebar-collapsed {
+  padding-left: 0;
 }
 
 /* ============================================
@@ -938,7 +934,7 @@ main > ul li time {
    RESPONSIVE
    ============================================ */
 @media (max-width: 768px) {
-  body { flex-direction: column; }
+  body { padding-left: 0 !important; }
 
   aside {
     position: relative;
