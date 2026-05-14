@@ -31,29 +31,26 @@ Git 采用**分布式**架构，每台电脑上都有一份完整的版本库，
 Git 的本地工作流可以分为三个区域：
 
 ```
-┌─────────────┐     git add     ┌──────────┐     git commit     ┌──────────────┐
-│  工作区      │ ──────────────> │  暂存区   │ ────────────────> │  本地仓库     │
-│ (Working Dir)│                 │ (Index)  │                   │ (Repository) │
-└─────────────┘                 └──────────┘                   └──────────────┘
-       │                                                              │
-       │  git checkout                                                │  git push
-       │  (从仓库恢复文件)                                              │  (推送至远程)
-       ▼                                                              ▼
-┌─────────────┐                                              ┌──────────────┐
-│  丢弃修改    │                                              │  远程仓库     │
-└─────────────┘                                              │ (Remote)     │
-                                                             └──────────────┘
++---------------+   git add   +-----------+   git commit   +--------------+
+|  Working Dir  | ----------> |   Index   | ------------> |  Repository  |
+|    (工作区)   |             |  (暂存区)   |               | (本地仓库)    |
++---------------+             +-----------+               +--------------+
+                                                                 |
+                                                                 | git push
+                                                                 v
+                                                          +--------------+
+                                                          |    Remote    |
+                                                          | (远程仓库)    |
+                                                          +--------------+
 ```
 
 三个区域的转换是 Git 最核心的操作模式：
 
-| 操作 | 说明 |
-|------|------|
-| `git add .` | 将工作区的修改添加到暂存区 |
-| `git commit -m "msg"` | 将暂存区的快照提交到本地仓库 |
-| `git push` | 将本地仓库的提交推送到远程仓库 |
-| `git pull` | 从远程仓库拉取最新代码 |
-| `git rm --cached <file>` | 将文件从暂存区移除（不再跟踪） |
+- `git add .` — 将工作区的修改添加到暂存区
+- `git commit -m "msg"` — 将暂存区的快照提交到本地仓库
+- `git push` — 将本地仓库的提交推送到远程仓库
+- `git pull` — 从远程仓库拉取最新代码
+- `git rm --cached <file>` — 将文件从暂存区移除（不再跟踪）
 
 ## 三、本地仓库操作速查
 
@@ -99,12 +96,12 @@ git reflog
 # 先查看历史版本
 git reflog
 # 输出示例：
-# a1b2c3d (HEAD -> main) feat: 添加登录功能
-# e4f5g6h fix: 修复注册页样式
-# h7i8j9k init: 项目初始化
+# a1b2c3d (HEAD -> main) HEAD@{0}: commit: feat: 添加登录功能
+# e4f5a6b HEAD@{1}: commit: fix: 修复注册页样式
+# c7d8e9f HEAD@{2}: commit (initial): init: 项目初始化
 
 # 回退到指定版本
-git reset --hard a1b2c3d
+git reset --hard e4f5a6b
 ```
 
 > `git reflog` 是 Git 的"后悔药"，记录了所有 HEAD 指针的移动历史。即使回退错了，也能通过它找到原来的版本号恢复。
@@ -116,13 +113,11 @@ git reset --hard a1b2c3d
 Git 的分支本质上是一个**指向提交对象的指针**。创建新分支就是创建一个新的指针，而不是复制一份文件。
 
 ```
-                main
-                  │
-    ┌──────●──────●──────●──────●──────┐
-    │                                  │
-    ●──────●──────●──────●             │
-          │                   │
-        feature/login    feature/payment
+main:             o---o---o---o---o
+                       \       \
+feature/login:          o---o   \
+                                 \
+feature/payment:                  o---o---o
 ```
 
 ### 分支基本操作
@@ -159,28 +154,30 @@ git merge feature/login
 
 合并发生时，Git 会按照以下逻辑自动处理：
 
-```
-合并前：
-    main:    ●───●───●───────────────
-                         \
-    feature/login:         ●───●───●
-                          
-合并后（Fast-forward 合并）：
-    main:    ●───●───●───●───●───●
-```
-
-如果两个分支都有独立的提交，Git 会创建一个新的"合并提交"：
+**Fast-forward 合并**（main 没有新提交时）：
 
 ```
-合并前：
-    main:    ●───●───●─────────────────●
-                         \             /
-    feature/login:         ●───●───●───●
-                          
-合并后（三方合并）：
-    main:    ●───●───●─────────────────●───(合并提交)──
-                         \             /
-                          ●───●───●───●
+Before:
+    main:            o---o---o
+                              \
+    feature/login:             o---o---o
+
+After:
+    main:            o---o---o---o---o---o
+```
+
+**三方合并**（两个分支都有独立提交时），Git 会创建一个新的合并提交：
+
+```
+Before:
+    main:            o---o---o---A---B
+                              \
+    feature/login:             o---C---D
+
+After:
+    main:            o---o---o---A---B---M (merge commit)
+                              \         /
+    feature/login:             o---C---D
 ```
 
 ### 合并冲突
@@ -293,24 +290,20 @@ git clone git@github.com:用户名/仓库名.git
 
 ### 分支命名规范
 
-```
-功能分支：   feature/功能名称        如 feature/user-login
-修复分支：   fix/问题描述            如 fix/login-timeout
-发布分支：   release/版本号          如 release/1.2.0
-日常分支：   daily/版本号            如 daily/0.0.3
-```
+- **功能分支：** `feature/功能名称`，如 `feature/user-login`
+- **修复分支：** `fix/问题描述`，如 `fix/login-timeout`
+- **发布分支：** `release/版本号`，如 `release/1.2.0`
+- **日常分支：** `daily/版本号`，如 `daily/0.0.3`
 
 ### 提交信息规范（Conventional Commits）
 
-```
-feat:     新功能
-fix:      修复 bug
-docs:     文档更新
-style:    代码格式调整
-refactor: 代码重构
-test:     测试相关
-chore:    构建/工具变动
-```
+- `feat` — 新功能
+- `fix` — 修复 bug
+- `docs` — 文档更新
+- `style` — 代码格式调整
+- `refactor` — 代码重构
+- `test` — 测试相关
+- `chore` — 构建/工具变动
 
 ### 常用工作流
 
