@@ -91,6 +91,7 @@ THEME_COLOR = "dark"
 THEME_COLOR_AUTO_DETECT_BROWSER_PREFERENCE = True
 THEME_COLOR_ENABLE_USER_OVERRIDE = True
 CUSTOM_CSS = "theme/css/custom.css"
+DISABLE_URL_HASH = True
 
 # Giscus Comments (configure after creating GitHub repo)
 # See: https://github.com/apps/giscus
