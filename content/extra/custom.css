@@ -39,8 +39,22 @@ body {
   position: relative;
 }
 
-/* --- Subtle background pattern --- */
+/* --- Anime background image (semi-transparent) --- */
 body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  z-index: -2;
+  background-image: url('../../images/anime-bg.png');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  opacity: 0.12;
+  pointer-events: none;
+}
+
+/* --- Subtle gradient overlay on background --- */
+body::after {
   content: '';
   position: fixed;
   inset: 0;
@@ -88,7 +102,11 @@ aside {
   border-right: 1px solid var(--border);
   display: flex;
   flex-direction: column;
-  transition: width 0.3s ease, min-width 0.3s ease, padding 0.3s ease;
+  overflow: hidden;
+  transition: width 0.35s cubic-bezier(0.4, 0, 0.2, 1),
+              min-width 0.35s cubic-bezier(0.4, 0, 0.2, 1),
+              padding 0.35s cubic-bezier(0.4, 0, 0.2, 1),
+              border-color 0.35s ease;
 }
 
 /* Collapsed state */
@@ -96,36 +114,42 @@ aside.collapsed {
   width: 0;
   min-width: 0;
   padding: 2.5rem 0;
-  overflow: hidden;
-  border-right: none;
+  border-right-color: transparent;
+}
+
+aside .sidebar-inner {
+  opacity: 1;
+  visibility: visible;
+  transition: opacity 0.25s ease 0.1s, visibility 0s linear 0s;
+  white-space: nowrap;
 }
 
 aside.collapsed .sidebar-inner {
-  display: none;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.15s ease, visibility 0s linear 0.15s;
 }
 
-/* Toggle button (outside aside, after it in DOM) */
+/* Toggle button — fixed position, does not move with sidebar */
 .sidebar-toggle {
   position: fixed;
-  top: 2.5rem;
-  left: 244px;
+  top: 1.2rem;
+  left: 12px;
   width: 36px;
   height: 36px;
   display: flex;
   align-items: center;
   justify-content: center;
-  background: var(--bg-sidebar);
+  background: var(--bg-card);
   border: 1px solid var(--border);
-  border-radius: 0 4px 4px 0;
+  border-radius: 6px;
   cursor: pointer;
   color: var(--text-muted);
-  transition: left 0.3s ease, color var(--transition), background var(--transition), border-color var(--transition);
-  z-index: 100;
+  transition: color var(--transition),
+              background var(--transition),
+              border-color var(--transition);
+  z-index: 1000;
   padding: 0;
-}
-
-aside.collapsed + .sidebar-toggle {
-  left: 4px;
 }
 
 .sidebar-toggle:hover {
@@ -137,16 +161,24 @@ aside.collapsed + .sidebar-toggle {
 aside > div { width: 100%; }
 
 aside img {
-  width: 48px !important;
-  height: 48px !important;
-  border-radius: 0;
+  width: 64px !important;
+  height: 64px !important;
+  border-radius: 50%;
+  object-fit: cover;
+  object-position: center;
   margin-bottom: 1rem;
-  transition: transform 0.3s ease, opacity 0.3s ease;
+  border: 2px solid var(--border);
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  transition: transform 0.3s ease, opacity 0.3s ease, box-shadow 0.3s ease;
+  /* Prevent broken image on slow load */
+  background: var(--bg-card);
+  image-rendering: -webkit-optimize-contrast;
 }
 
 aside img:hover {
   transform: scale(1.08);
-  opacity: 0.85;
+  opacity: 0.9;
+  box-shadow: 0 4px 12px rgba(59,130,246,0.2);
 }
 
 aside h1 {
@@ -653,6 +685,10 @@ main > ul li time {
   }
 
   body::before {
+    opacity: 0.08;
+  }
+
+  body::after {
     background-image:
       radial-gradient(circle at 20% 50%, rgba(96,165,250,0.06) 0%, transparent 50%),
       radial-gradient(circle at 80% 20%, rgba(99,102,241,0.05) 0%, transparent 50%),
@@ -698,7 +734,7 @@ main > ul li time {
     flex-wrap: wrap;
   }
 
-  aside img { width: 40px !important; height: 40px !important; margin-bottom: 0; }
+  aside img { width: 44px !important; height: 44px !important; margin-bottom: 0; object-fit: cover; }
   aside h1 { margin: 0; font-size: 0.85rem; }
   aside > div > p { display: none; }
 
