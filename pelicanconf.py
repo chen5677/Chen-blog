@@ -1,7 +1,7 @@
-AUTHOR = "Your Name"
-SITENAME = "My Blog"
+AUTHOR = "chen5677"
+SITENAME = "Chen's Blog"
 SITEURL = ""
-SITETITLE = "My Blog"
+SITETITLE = "Chen's Blog"
 SITESUBTITLE = "记录技术与生活"
 SITEDESCRIPTION = "个人技术博客，分享编程、技术与生活随笔"
 SITELOGO = "/images/profile.png"
@@ -47,6 +47,7 @@ EXTRA_PATH_METADATA = {
     "extra/robots.txt": {"path": "robots.txt"},
     "extra/favicon.ico": {"path": "favicon.ico"},
     "extra/nojekyll": {"path": ".nojekyll"},
+    "extra/custom.css": {"path": "theme/css/custom.css"},
 }
 
 # Pages
@@ -86,6 +87,7 @@ PYGMENTS_STYLE = "monokai"
 THEME_COLOR = "dark"
 THEME_COLOR_AUTO_DETECT_BROWSER_PREFERENCE = True
 THEME_COLOR_ENABLE_USER_OVERRIDE = True
+CUSTOM_CSS = "theme/css/custom.css"
 
 # Giscus Comments (configure after creating GitHub repo)
 # See: https://github.com/apps/giscus
