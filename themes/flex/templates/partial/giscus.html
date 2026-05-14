@@ -1,0 +1,20 @@
+{% if GISCUS_REPO and GISCUS_REPO_ID and GISCUS_CATEGORY and GISCUS_CATEGORY_ID %}
+<!-- Giscus Comments -->
+<script src="https://giscus.app/client.js"
+        data-repo="{{ GISCUS_REPO }}"
+        data-repo-id="{{ GISCUS_REPO_ID }}"
+        data-category="{{ GISCUS_CATEGORY }}"
+        data-category-id="{{ GISCUS_CATEGORY_ID }}"
+        data-mapping="pathname"
+        data-strict="0"
+        data-reactions-enabled="1"
+        data-emit-metadata="0"
+        data-input-position="bottom"
+        data-theme="preferred_color_scheme"
+        data-lang="zh-CN"
+        crossorigin="anonymous"
+        async>
+</script>
+<noscript>{{ _('Please enable JavaScript to view comments.') }}</noscript>
+<!-- End Giscus Comments -->
+{% endif %}
