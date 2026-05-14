@@ -478,13 +478,14 @@ article.single > div code {
   font-size: 0.85em;
 }
 
-article.single > div p > code,
-article.single > div li > code {
-  padding: 0.1rem 0.35rem;
-  background: var(--accent-subtle);
+/* Inline code — normal text color, subtle background */
+article.single > div :not(pre) > code {
+  padding: 0.12rem 0.4rem;
+  background: var(--bg-card);
   font-size: 0.85em;
-  color: var(--accent);
-  border: 1px solid #dbeafe;
+  color: var(--text);
+  border: 1px solid var(--border);
+  border-radius: 3px;
 }
 
 article.single > div pre code {
@@ -493,6 +494,34 @@ article.single > div pre code {
   border: none;
   color: #e2e8f0;
   font-size: 0.85rem;
+}
+
+/* --- Pygments: override all red/pink tokens --- */
+.highlight .o,
+.highlight .ow,
+.literal-block .o,
+.literal-block .ow {
+  color: #c792ea;
+}
+.highlight .kn,
+.highlight .nt,
+.literal-block .kn,
+.literal-block .nt {
+  color: #c792ea;
+}
+.highlight .gd,
+.literal-block .gd {
+  color: #ff9580;
+}
+.highlight .gp,
+.literal-block .gp {
+  color: #89ddff;
+  font-weight: 700;
+}
+.highlight .err,
+.literal-block .err {
+  color: #f8f8f2 !important;
+  background-color: transparent !important;
 }
 
 /* --- Tables --- */
@@ -703,11 +732,10 @@ main > ul li time {
     background: #1e293b;
   }
 
-  article.single > div p > code,
-  article.single > div li > code {
+  article.single > div :not(pre) > code {
     background: #1e293b;
     border-color: #334155;
-    color: #93c5fd;
+    color: #e2e8f0;
   }
 }
 
