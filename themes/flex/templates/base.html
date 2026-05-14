@@ -185,10 +185,19 @@
   {% include 'partial/stork.html' %}
   {% include 'partial/cf_analytics.html' %}
 
-  {% block additional_js %}{% endblock %}
+  <script>
+  function toggleSidebar() {
+    const aside = document.querySelector('aside');
+    aside.classList.toggle('collapsed');
+    localStorage.setItem('sidebar-collapsed', aside.classList.contains('collapsed'));
+  }
+  document.addEventListener('DOMContentLoaded', () => {
+    if (localStorage.getItem('sidebar-collapsed') === 'true') {
+      document.querySelector('aside').classList.add('collapsed');
+    }
+  });
+  </script>
 
-  {% if CUSTOM_JS %}
-  <script src="{{ SITEURL }}/{{ CUSTOM_JS }}"></script>
-  {% endif %}
+  {% block additional_js %}{% endblock %}
 </body>
 </html>

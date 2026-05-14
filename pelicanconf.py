@@ -4,7 +4,7 @@ SITEURL = ""
 SITETITLE = "Chen's Blog"
 SITESUBTITLE = "记录技术与生活"
 SITEDESCRIPTION = "个人技术博客，分享编程、技术与生活随笔"
-SITELOGO = "/images/profile.png"
+SITELOGO = "/images/avatar.jpg"
 FAVICON = "/images/favicon.png"
 
 PATH = "content"
@@ -51,7 +51,6 @@ EXTRA_PATH_METADATA = {
     "extra/favicon.ico": {"path": "favicon.ico"},
     "extra/nojekyll": {"path": ".nojekyll"},
     "extra/custom.css": {"path": "theme/css/custom.css"},
-    "extra/custom.js": {"path": "theme/js/custom.js"},
 }
 
 # Pages
@@ -92,7 +91,6 @@ THEME_COLOR = "dark"
 THEME_COLOR_AUTO_DETECT_BROWSER_PREFERENCE = True
 THEME_COLOR_ENABLE_USER_OVERRIDE = True
 CUSTOM_CSS = "theme/css/custom.css"
-CUSTOM_JS = "theme/js/custom.js"
 DISABLE_URL_HASH = True
 
 # Giscus Comments (configure after creating GitHub repo)

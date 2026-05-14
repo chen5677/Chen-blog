@@ -1,5 +1,13 @@
 <aside>
-  <div>
+  <button class="sidebar-toggle" onclick="toggleSidebar()" aria-label="Toggle sidebar">
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+      <line x1="3" y1="6" x2="21" y2="6"/>
+      <line x1="3" y1="12" x2="21" y2="12"/>
+      <line x1="3" y1="18" x2="21" y2="18"/>
+    </svg>
+  </button>
+
+  <div class="sidebar-inner">
     <a href="{{ SITEURL }}/">
       {% if SITELOGO %}
       <img src="{{ SITELOGO }}" alt="{{ SITETITLE }}" title="{{ SITETITLE }}">
@@ -32,7 +40,6 @@
     {% if (pages and DISPLAY_PAGES_ON_MENU) or LINKS %}
     <nav>
       <ul class="list">
-        {# Open links in new window depending on the LINKS_IN_NEW_TAB setting #}
         {% macro get_target(link) -%}
           {%- if LINKS_IN_NEW_TAB in ('all', true) -%}
           _blank
@@ -84,14 +91,4 @@
     </ul>
     {% endif %}
   </div>
-
-  {% if GOOGLE_ADSENSE and GOOGLE_ADSENSE.ads.aside %}
-    <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-    <ins class="adsbygoogle ads-aside"
-         data-ad-client="{{ GOOGLE_ADSENSE.ca_id }}"
-         data-ad-slot="{{ GOOGLE_ADSENSE.ads.aside }}"></ins>
-    <script>
-      (adsbygoogle = window.adsbygoogle || []).push({});
-    </script>
-  {% endif %}
 </aside>

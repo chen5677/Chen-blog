@@ -75,7 +75,7 @@ main > article:nth-child(4) { animation-delay: 0.2s; }
 main > article:nth-child(5) { animation-delay: 0.25s; }
 
 /* ============================================
-   SIDEBAR — Swiss compact
+   SIDEBAR — Swiss compact, collapsible
    ============================================ */
 aside {
   position: sticky;
@@ -88,6 +88,50 @@ aside {
   border-right: 1px solid var(--border);
   display: flex;
   flex-direction: column;
+  transition: width 0.3s ease, min-width 0.3s ease, padding 0.3s ease;
+}
+
+/* Collapsed state */
+aside.collapsed {
+  width: 0;
+  min-width: 0;
+  padding: 2.5rem 0;
+  overflow: hidden;
+  border-right: none;
+}
+
+aside.collapsed .sidebar-inner {
+  display: none;
+}
+
+/* Toggle button */
+.sidebar-toggle {
+  position: fixed;
+  top: 2.5rem;
+  left: 240px;
+  width: 36px;
+  height: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--bg-sidebar);
+  border: 1px solid var(--border);
+  border-left: none;
+  cursor: pointer;
+  color: var(--text-muted);
+  transition: left 0.3s ease, color var(--transition), background var(--transition), border-color var(--transition);
+  z-index: 100;
+  padding: 0;
+}
+
+aside.collapsed .sidebar-toggle {
+  left: 0;
+}
+
+.sidebar-toggle:hover {
+  color: var(--accent);
+  border-color: var(--accent);
+  background: var(--accent-subtle);
 }
 
 aside > div { width: 100%; }
@@ -675,6 +719,8 @@ main > ul li time {
   }
 
   aside ul.social { display: none; }
+
+  .sidebar-toggle { display: none; }
 
   main {
     padding: 1.5rem 1.25rem;
