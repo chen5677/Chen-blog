@@ -38,9 +38,11 @@ body {
   color: var(--text);
   background: var(--bg);
   -webkit-font-smoothing: antialiased;
-  display: flex;
   min-height: 100vh;
   position: relative;
+  /* Override Flex theme: remove height:100% and flex layout for fixed sidebar */
+  display: block;
+  height: auto;
 }
 
 /* --- Anime background image (semi-transparent) --- */
@@ -96,8 +98,9 @@ main > article:nth-child(5) { animation-delay: 0.25s; }
    SIDEBAR — Modern glassmorphism design
    ============================================ */
 aside {
-  position: sticky;
+  position: fixed;
   top: 0;
+  left: 0;
   width: 260px;
   min-width: 260px;
   height: 100vh;
@@ -112,8 +115,8 @@ aside {
   flex-direction: column;
   overflow-y: auto;
   overflow-x: hidden;
-  transition: width 0.35s cubic-bezier(0.4, 0, 0.2, 1),
-              min-width 0.35s cubic-bezier(0.4, 0, 0.2, 1),
+  z-index: 2;
+  transition: transform 0.35s cubic-bezier(0.4, 0, 0.2, 1),
               border-color 0.35s ease;
 }
 
@@ -127,9 +130,7 @@ aside::-webkit-scrollbar-thumb {
 
 /* Collapsed state */
 aside.collapsed {
-  width: 0;
-  min-width: 0;
-  overflow: hidden;
+  transform: translateX(-100%);
   border-right-color: transparent;
 }
 
@@ -372,10 +373,21 @@ aside ul.social li a:hover {
    MAIN CONTENT
    ============================================ */
 main {
-  flex: 1;
   max-width: 740px;
-  padding: 3rem 3rem;
-  margin: 0 auto;
+  padding: 3rem;
+  margin-left: 260px;
+  margin-right: auto;
+  min-height: 100vh;
+  height: auto;
+  width: calc(100% - 260px);
+  position: static;
+  transition: margin-left 0.35s cubic-bezier(0.4, 0, 0.2, 1),
+              width 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* When sidebar is collapsed, main takes full width */
+aside.collapsed ~ main {
+  margin-left: 0;
   width: 100%;
 }
 
@@ -936,6 +948,7 @@ main > ul li time {
     border-right: none;
     border-bottom: 1px solid var(--border);
     background: var(--bg-sidebar);
+    transform: none !important;
   }
 
   aside .sidebar-inner {
@@ -1007,6 +1020,8 @@ main > ul li time {
   main {
     padding: 1.5rem 1.25rem;
     max-width: 100%;
+    margin-left: 0;
+    width: 100%;
   }
 
   main > article { padding: 1.15rem 1.25rem; }
