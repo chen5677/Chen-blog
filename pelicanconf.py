@@ -12,7 +12,10 @@ THEME = "themes/flex"
 
 TIMEZONE = "Asia/Shanghai"
 DEFAULT_LANG = "zh"
-LOCALE = ("zh_CN", "zh_CN.UTF-8", "zh_CN.utf8")
+LOCALE = ("zh_CN.UTF-8", "zh_CN")
+DATE_FORMATS = {
+    "zh": "%Y-%m-%d",
+}
 
 # Feed generation
 FEED_ALL_ATOM = "feeds/all.atom.xml"

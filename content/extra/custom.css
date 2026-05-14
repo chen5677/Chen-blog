@@ -179,19 +179,24 @@ main > article header h2 a {
 
 main > article header h2 a:hover { color: var(--accent); }
 
-main > article header p {
+.article-meta {
   color: var(--text-muted);
   font-size: 0.78rem;
   margin: 0;
 }
 
-main > article header p a {
+.article-meta time {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+}
+
+.article-meta a {
   color: var(--accent);
   text-decoration: none;
   font-weight: 500;
 }
 
-main > article header p a:hover { text-decoration: underline; }
+.article-meta a:hover { text-decoration: underline; }
 
 main > article div.summary {
   color: var(--text-secondary);
@@ -258,6 +263,16 @@ article.single header h1 {
 article.single header p {
   color: var(--text-secondary);
   font-size: 0.85rem;
+}
+
+article.single .article-meta {
+  color: var(--text-muted);
+  font-size: 0.82rem;
+}
+
+article.single .article-meta time {
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
 }
 
 article.single > div {
