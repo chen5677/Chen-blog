@@ -32,7 +32,7 @@ TAG_URL = "tag/{slug}/"
 TAG_SAVE_AS = "tag/{slug}/index.html"
 AUTHOR_URL = "author/{slug}/"
 AUTHOR_SAVE_AS = ""
-INDEX_SAVE_AS = "blog/index.html"
+INDEX_SAVE_AS = "index.html"
 
 # Pagination
 DEFAULT_PAGINATION = 10
