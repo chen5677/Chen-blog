@@ -4,7 +4,7 @@ SITEURL = ""
 SITETITLE = "Chen Lab"
 SITESUBTITLE = "记录技术与生活"
 SITEDESCRIPTION = "个人技术博客，分享编程、技术与生活随笔"
-SITELOGO = "/images/profile.jpg"
+SITELOGO = "/images/avatar.jpg"
 FAVICON = "/images/favicon.png"
 
 PATH = "content"
@@ -46,7 +46,12 @@ STATIC_PATHS = ["images", "extra"]
 EXTRA_PATH_METADATA = {
     "extra/robots.txt": {"path": "robots.txt"},
     "extra/favicon.ico": {"path": "favicon.ico"},
+    "extra/custom.css": {"path": "theme/css/custom.css"},
+    "extra/custom.js": {"path": "theme/js/custom.js"},
 }
+
+# Custom CSS (loaded by Flex theme)
+CUSTOM_CSS = "theme/css/custom.css"
 
 # Pages
 DISPLAY_PAGES_ON_MENU = True
