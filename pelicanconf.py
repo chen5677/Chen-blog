@@ -1,10 +1,10 @@
-AUTHOR = "chen5677"
-SITENAME = "Chen's Blog"
+AUTHOR = "Chen5677"
+SITENAME = "Chen Lab"
 SITEURL = ""
-SITETITLE = "Chen's Blog"
+SITETITLE = "Chen Lab"
 SITESUBTITLE = "记录技术与生活"
 SITEDESCRIPTION = "个人技术博客，分享编程、技术与生活随笔"
-SITELOGO = "/images/avatar.jpg"
+SITELOGO = "/images/profile.jpg"
 FAVICON = "/images/favicon.png"
 
 PATH = "content"
@@ -12,10 +12,7 @@ THEME = "themes/flex"
 
 TIMEZONE = "Asia/Shanghai"
 DEFAULT_LANG = "zh"
-LOCALE = ("zh_CN.UTF-8", "zh_CN")
-DATE_FORMATS = {
-    "zh": "%Y-%m-%d",
-}
+LOCALE = ("zh_CN", "zh_CN.UTF-8", "zh_CN.utf8")
 
 # Feed generation
 FEED_ALL_ATOM = "feeds/all.atom.xml"
@@ -35,7 +32,7 @@ TAG_URL = "tag/{slug}/"
 TAG_SAVE_AS = "tag/{slug}/index.html"
 AUTHOR_URL = "author/{slug}/"
 AUTHOR_SAVE_AS = ""
-INDEX_SAVE_AS = "index.html"
+INDEX_SAVE_AS = "blog/index.html"
 
 # Pagination
 DEFAULT_PAGINATION = 10
@@ -49,9 +46,6 @@ STATIC_PATHS = ["images", "extra"]
 EXTRA_PATH_METADATA = {
     "extra/robots.txt": {"path": "robots.txt"},
     "extra/favicon.ico": {"path": "favicon.ico"},
-    "extra/nojekyll": {"path": ".nojekyll"},
-    "extra/custom.css": {"path": "theme/css/custom.css"},
-    "extra/custom.js": {"path": "theme/js/custom.js"},
 }
 
 # Pages
@@ -91,8 +85,6 @@ PYGMENTS_STYLE = "monokai"
 THEME_COLOR = "dark"
 THEME_COLOR_AUTO_DETECT_BROWSER_PREFERENCE = True
 THEME_COLOR_ENABLE_USER_OVERRIDE = True
-CUSTOM_CSS = "theme/css/custom.css"
-DISABLE_URL_HASH = True
 
 # Giscus Comments (configure after creating GitHub repo)
 # See: https://github.com/apps/giscus
